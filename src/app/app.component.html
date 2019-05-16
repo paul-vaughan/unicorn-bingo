@@ -1,4 +1,23 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="bingo">
+
+
+
+<div style="text-align:center">
+<!--  <img width="600" alt="Angular Logo" src="/assets/unicorn/header.png">-->
+  <h1 style="color: #00b0bc"> Unicorn Bingo!</h1>
+
+  <img *ngIf="remainingNrOfImages === 1" width="300" height="300" alt="Angular Logo" src="https://media.giphy.com/media/8roJWgZB6rhDy/giphy.gif">
+  <img *ngIf="remainingNrOfImages > 1"  img width="300" alt="Angular Logo" [src]="getCurrentImage()">
+  <br/>
+  <button *ngIf="remainingNrOfImages > 1" (click)="next()">{{running ? 'STOP' : 'GA VERDER'}}</button>
+  <button *ngIf="remainingNrOfImages === 1" (click)="reset()">Reset</button>
+
+</div>
+
+  <div class="items-box">
+    <img *ngFor="let image of selectedBingoImages" img width="150" alt="Angular Logo" [src]="image">
+  </div>
+
+
+</div>
