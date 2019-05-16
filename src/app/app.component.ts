@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {interval} from 'rxjs';
+
 
 @Component({
   selector: 'my-app',
@@ -17,7 +19,7 @@ export class AppComponent  {
   remainingNrOfImages = 24;
 
   currentIndex = 0;
-  //subscribe: Subscription;
+  subscribe: any;
 
   running = true;
 
@@ -44,7 +46,7 @@ export class AppComponent  {
     }
 
     if (this.running) {
-      //this.subscribe.unsubscribe();
+      this.subscribe.unsubscribe();
       this.selectedBingoImages.push(this.getCurrentImage());
     } else {
       this.removeCurrent();
@@ -86,7 +88,7 @@ export class AppComponent  {
 
 
   startRun() {
-    //const source = interval(50);
-    //this.subscribe = source.subscribe(val => this.currentIndex = val % this.remainingNrOfImages);
+    const source = interval(50);
+    this.subscribe = source.subscribe(val => this.currentIndex = val % this.remainingNrOfImages);
   }
 }
