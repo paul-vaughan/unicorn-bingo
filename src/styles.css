@@ -1,1 +1,10 @@
 /* Add application styles & imports to this file! */
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #f069a1;
+}
+
+h1 {
+  margin-top: 0;
+}

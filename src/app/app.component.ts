@@ -8,10 +8,6 @@ import {interval} from 'rxjs';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  name = 'Angular2';
-
-  title = 'unicorn-bingo-app';
-
   bingoImages: string[] = [];
   selectedBingoImages: string[] = [];
 
@@ -25,12 +21,7 @@ export class AppComponent  {
 
   ngOnInit() {
     console.log('loaded component');
-    let i;
-    for (i = 0; i < this.nrOffImages; i++) {
-      console.log('added');
-      this.bingoImages.push('https://raw.githubusercontent.com/paul-vaughan/unicorn-bingo/master/src/assets/unicorn/bingo_' + (1 + i) + '.png');
-    }
-
+    this.loadBingoImages();
     this.startRun();
   }
 
@@ -60,15 +51,18 @@ export class AppComponent  {
   }
 
   reset() {
-    this.bingoImages = [];
     this.nrOffImages = 24;
-    this.remainingNrOfImages = 24;
+    this.remainingNrOfImages = this.nrOffImages;
+    this.loadBingoImages();
+    this.selectedBingoImages = [];
+  }
+
+  loadBingoImages(){
+    this.bingoImages = [];
     let i;
     for (i = 0; i < this.nrOffImages; i++) {
-      console.log('added');
-      this.bingoImages.push('/assets/unicorn/bingo_' + (1 + i) + '.png');
+      this.bingoImages.push('https://raw.githubusercontent.com/paul-vaughan/unicorn-bingo/master/src/assets/unicorn/bingo_' + (1 + i) + '.png');
     }
-    this.selectedBingoImages = [];
   }
 
   removeCurrent(): void {
@@ -85,7 +79,6 @@ export class AppComponent  {
     this.remainingNrOfImages--;
 
   }
-
 
   startRun() {
     const source = interval(50);
